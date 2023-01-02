@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/anasayfa"
+        android:icon="@drawable/anasayfa_resim"
+        android:enabled="true"
+        app:actionViewClass="com.google.android.material.bottomnavigation.BottomNavigationView"
+        android:title="Anasayfa" />
+    <item
+        android:id="@+id/sepet"
+        android:icon="@drawable/sepet_resim"
+        android:enabled="true"
+        app:actionViewClass="com.google.android.material.bottomnavigation.BottomNavigationView"
+        android:title="Sepet" />
+    <item
+        android:id="@+id/profil"
+        android:enabled="true"
+        android:icon="@drawable/profil_resim"
+        app:actionViewClass="com.google.android.material.bottomnavigation.BottomNavigationView"
+        android:title="Profil" />
+</menu>

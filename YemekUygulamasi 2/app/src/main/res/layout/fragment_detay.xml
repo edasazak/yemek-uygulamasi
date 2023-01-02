@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="detayToolbarBaslik"
+            type="String" />
+        <variable
+            name="detayFragment"
+            type="com.example.yemekuygulamasi.ui.fragment.DetayFragment" />
+        <variable
+            name="yemekNesnesi"
+            type="com.example.yemekuygulamasi.data.entity.Yemekler" />
+        <variable
+            name="sepetNesnesi"
+            type="com.example.yemekuygulamasi.data.entity.SepettekiYemekler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.DetayFragment">
+
+        <ImageView
+            android:id="@+id/imageViewYemekDetay"
+            android:layout_width="189dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textViewYemekAdi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@{yemekNesnesi.yemek_adi}"
+            android:textColor="#333332"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewYemekDetay" />
+
+        <TextView
+            android:id="@+id/textViewYemekFiyati"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@{String.valueOf(yemekNesnesi.yemek_fiyat)}"
+            android:textColor="#305A32"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewYemekAdi" />
+
+        <Button
+            android:id="@+id/buttonSepeteEkle"
+            android:layout_width="52dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="136dp"
+            android:backgroundTint="@color/toolbar"
+            android:text="+"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textViewSiparisAdet"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewYemekDetay" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarDetay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@{detayToolbarBaslik}" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="₺"
+            android:textColor="#305A32"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textViewYemekFiyati"
+            app:layout_constraintTop_toBottomOf="@+id/textViewYemekAdi" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#333332"
+            app:itemIconTint="@color/toolbar"
+            app:itemTextColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_nav_menu">
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+        <TextView
+            android:id="@+id/textViewSiparisAdet"
+            android:layout_width="44dp"
+            android:layout_height="50dp"
+            android:background="#DCDCDC"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="#333332"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
+            app:layout_constraintEnd_toStartOf="@+id/buttonSepeteEkle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonSepettenCikar"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewYemekDetay" />
+
+        <Button
+            android:id="@+id/buttonSepettenCikar"
+            android:layout_width="52dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="136dp"
+            android:backgroundTint="@color/toolbar"
+            android:text="-"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textViewSiparisAdet"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewYemekDetay" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
