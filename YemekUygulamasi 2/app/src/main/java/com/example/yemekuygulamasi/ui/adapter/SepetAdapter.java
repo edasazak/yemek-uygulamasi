@@ -54,7 +54,6 @@ public class SepetAdapter extends RecyclerView.Adapter<SepetAdapter.CardTasarimT
             Snackbar.make(v, sepettekiYemekler.getYemek_adi()+" sepetinizden çıkarıldı.", Snackbar.LENGTH_SHORT).show();
             sepettekiYemeklerList.remove(position);
             notifyItemRemoved(position);
-            //notifyItemRangeRemoved(position,sepettekiYemeklerList.size());
         });
 
 
