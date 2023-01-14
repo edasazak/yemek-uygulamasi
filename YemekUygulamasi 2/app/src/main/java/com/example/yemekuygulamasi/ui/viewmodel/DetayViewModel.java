@@ -22,7 +22,4 @@ public class DetayViewModel extends ViewModel {
     public void sil(int sepet_yemek_id, String kullanici_adi){
         yrepo.sil(sepet_yemek_id, kullanici_adi);
     }
-    public void sepettekiYemekleriGetir(String kullanici_adi){
-        yrepo.sepettekiYemekleriGetir(kullanici_adi);
-    }
 }

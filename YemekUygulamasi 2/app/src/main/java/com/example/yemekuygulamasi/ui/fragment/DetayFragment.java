@@ -22,8 +22,6 @@ import com.example.yemekuygulamasi.ui.viewmodel.DetayViewModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
@@ -41,44 +39,28 @@ public class DetayFragment extends Fragment {
         DetayFragmentArgs bundle = DetayFragmentArgs.fromBundle(getArguments());
         Yemekler gelenYemek = bundle.getYemek();
 
-        SepettekiYemekler sepettekiYemekler = new SepettekiYemekler(); //gelenYemek.getYemek_id(),gelenYemek.getYemek_adi(),gelenYemek.getYemek_resim_adi(),gelenYemek.getYemek_fiyat()
-
+        SepettekiYemekler sepettekiYemekler = new SepettekiYemekler();
         binding.setYemekNesnesi(gelenYemek);
         binding.setDetayFragment(this);
+        sepettekiYemekler.setKullanici_adi("eda");
         resimGoster(gelenYemek.getYemek_resim_adi());
 
         binding.buttonSepeteEkle.setOnClickListener(v -> {
-            sepettekiYemekler.setKullanici_adi("eda");
-            if(count==0) {
-                viewModel.sepettekiYemekleriGetir(sepettekiYemekler.getKullanici_adi());
-                viewModel.sepeteEkle(gelenYemek.getYemek_adi(), gelenYemek.getYemek_resim_adi(), gelenYemek.getYemek_fiyat(), sepettekiYemekler.getYemek_siparis_adet(), sepettekiYemekler.getKullanici_adi());
-                count+=1;
-                binding.textViewSiparisAdet.setText(String.valueOf(count));
-                sepettekiYemekler.setYemek_siparis_adet(binding.textViewSiparisAdet.getText().toString());
-            }else if (count>0){
-                viewModel.sepettekiYemekleriGetir(sepettekiYemekler.getKullanici_adi());
-                viewModel.sepeteEkle(gelenYemek.getYemek_adi(), gelenYemek.getYemek_resim_adi(), gelenYemek.getYemek_fiyat(), sepettekiYemekler.getYemek_siparis_adet(), sepettekiYemekler.getKullanici_adi());
-                count+=1;
-                binding.textViewSiparisAdet.setText(String.valueOf(count));
-                sepettekiYemekler.setYemek_siparis_adet(binding.textViewSiparisAdet.getText().toString());
-            }else {
-                Snackbar.make(v, "Sepetiniz boş", Snackbar.LENGTH_SHORT).show();
-            }
-            Log.e("yemek", "kullanıcı adı:"+sepettekiYemekler.getKullanici_adi()+" isim:"+gelenYemek.getYemek_adi()+" adet:"+sepettekiYemekler.getYemek_siparis_adet());
-            });
+            count += 1;
+            sepettekiYemekler.getKullanici_adi();
+            binding.textViewSiparisAdet.setText(String.valueOf(count));
+            sepettekiYemekler.setYemek_siparis_adet(binding.textViewSiparisAdet.getText().toString());
+            viewModel.sepeteEkle(gelenYemek.getYemek_adi(), gelenYemek.getYemek_resim_adi(), gelenYemek.getYemek_fiyat(), sepettekiYemekler.getYemek_siparis_adet(), sepettekiYemekler.getKullanici_adi());
+        });
 
         binding.buttonSepettenCikar.setOnClickListener(v -> {
             if(count>0) {
-                viewModel.sil(gelenYemek.getYemek_id(), sepettekiYemekler.getKullanici_adi());
+                viewModel.sil(sepettekiYemekler.getSepet_yemek_id(), sepettekiYemekler.getKullanici_adi());
                 count-=1;
                 binding.textViewSiparisAdet.setText(String.valueOf(count));
                 sepettekiYemekler.setYemek_siparis_adet(binding.textViewSiparisAdet.getText().toString());
-            }else if (count==0){
-                viewModel.sil(gelenYemek.getYemek_id(), sepettekiYemekler.getKullanici_adi());
-                binding.textViewSiparisAdet.setText(String.valueOf(count));
-                Snackbar.make(v, "Sepetiniz boş", Snackbar.LENGTH_SHORT).show();
             }else {
-                Snackbar.make(v, "Sepetiniz zaten boş", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(v, "Sepetiniz boş", Snackbar.LENGTH_SHORT).show();
             }
         });
 
@@ -113,5 +95,4 @@ public class DetayFragment extends Fragment {
         fragmentTransaction.replace(R.id.fragmentContainerView, fragment);
         fragmentTransaction.commit();
     }
-
 }

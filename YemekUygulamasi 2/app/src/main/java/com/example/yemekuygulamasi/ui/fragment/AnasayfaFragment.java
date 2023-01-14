@@ -37,6 +37,13 @@ public class AnasayfaFragment extends Fragment {
 
         binding.rvListe.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
 
+        viewModel.yemeklerList.observe(getViewLifecycleOwner(), yemeklerList -> {
+            YemeklerAdapter adapter = new YemeklerAdapter(requireContext(), yemeklerList, viewModel);
+            binding.setYemeklerAdapter(adapter);
+        });
+
+        binding.setAnasayfaFragment(this);
+
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.sepet:
@@ -50,16 +57,6 @@ public class AnasayfaFragment extends Fragment {
             }
             return true;
         });
-
-
-        viewModel.yemeklerList.observe(getViewLifecycleOwner(), yemeklerList -> {
-            YemeklerAdapter adapter = new YemeklerAdapter(requireContext(), yemeklerList, viewModel);
-            binding.setYemeklerAdapter(adapter);
-        });
-
-
-
-        binding.setAnasayfaFragment(this);
 
         return binding.getRoot();
     }

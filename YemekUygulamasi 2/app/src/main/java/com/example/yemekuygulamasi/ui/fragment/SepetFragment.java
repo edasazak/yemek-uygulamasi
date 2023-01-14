@@ -49,6 +49,7 @@ public class SepetFragment extends Fragment {
         viewModel.sepetteki.observe(getViewLifecycleOwner(), sepetteki -> {
             SepetAdapter adapter = new SepetAdapter(requireContext(), sepetteki, viewModel);
             binding.setSepetAdapter(adapter);
+            adapter.notifyDataSetChanged();
         });
 
 

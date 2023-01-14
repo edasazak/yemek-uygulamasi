@@ -47,12 +47,12 @@ public class YemeklerDaoRepository {
         ydao.sepeteEkle(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi).enqueue(new Callback<YemeklerCevap>() {
             @Override
             public void onResponse(Call<YemeklerCevap> call, Response<YemeklerCevap> response) {
-                //Log.e("yemek","res"+response);
+                sepettekiYemekleriGetir(kullanici_adi);
             }
 
             @Override
             public void onFailure(Call<YemeklerCevap> call, Throwable t) {
-
+                Log.e("yemek", t.getMessage());
             }
         });
     }
@@ -61,7 +61,6 @@ public class YemeklerDaoRepository {
             @Override
             public void onResponse(Call<SepettekiYemeklerCevap> call, Response<SepettekiYemeklerCevap> response) {
                 sepettekiYemekleriGetir(kullanici_adi);
-                Log.e("yemek","res"+response);
             }
 
             @Override
@@ -76,13 +75,9 @@ public class YemeklerDaoRepository {
             public void onResponse(Call<SepettekiYemeklerCevap> call, Response<SepettekiYemeklerCevap> response) {
                     List<SepettekiYemekler> liste = response.body().getSepet_yemekler();
                     sepettekiYemeklerList.setValue(liste);
-                    Log.e("yemek","res"+response);
-
             }
-
             @Override
             public void onFailure(Call<SepettekiYemeklerCevap> call, Throwable t) {
-
             }
         });
     }

@@ -52,13 +52,9 @@ public class SepetAdapter extends RecyclerView.Adapter<SepetAdapter.CardTasarimT
         t.imageViewSil.setOnClickListener(v -> {
             viewModel.sil(sepettekiYemekler.getSepet_yemek_id(), sepettekiYemekler.getKullanici_adi());
             Snackbar.make(v, sepettekiYemekler.getYemek_adi()+" sepetinizden çıkarıldı.", Snackbar.LENGTH_SHORT).show();
-            Log.e("yemek","cikarilan"+sepettekiYemekler.getYemek_adi());
-            if(position==0){
-                sepettekiYemeklerList.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeRemoved(position,sepettekiYemeklerList.size());
-            }
-            Log.e("yemek","cikarilan"+position);
+            sepettekiYemeklerList.remove(position);
+            notifyItemRemoved(position);
+            //notifyItemRangeRemoved(position,sepettekiYemeklerList.size());
         });
 
 
